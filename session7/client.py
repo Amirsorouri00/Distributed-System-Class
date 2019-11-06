@@ -66,10 +66,8 @@ def download_file(conn_num, file_size):
         conn.send(data.encode())
 
         if i == conn_num - 1:
-            # print("lastttttttttttttttttttttttttttt")
             x = threading.Thread(target=download_chunk, args=(conn, conn_num, last_chunk_size, chunks, i))            
         else:
-            # print("sssss")
             x = threading.Thread(target=download_chunk, args=(conn, conn_num, int(chunk_size), chunks, i))
         
         threads.append(x)
@@ -99,8 +97,6 @@ def download_file(conn_num, file_size):
     print('Hash is ok') if hash_ok else print('Hash is not ok')
 
     return file
-
-    
 
 
 if __name__ == '__main__':

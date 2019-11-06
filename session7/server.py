@@ -5,7 +5,6 @@ import io
 import socket               # Import socket module
 import threading
 import hashlib
-# import Exception
 
 
 def server_socket(path, filesize):
@@ -29,15 +28,11 @@ def server_socket(path, filesize):
         
         x = threading.Thread(target=server_program, args=(conn, addr, path, filesize))
         x.start()
-        # s.close()
-
-
 
 
 def server_program(conn, address, path, filesize):
     print("Server_Program Starting ...")
 
-    # while True:
     print("Server_Program Waiting for a data from the client ...")
 
     data = conn.recv(1024).decode()
@@ -61,14 +56,11 @@ def server_program(conn, address, path, filesize):
                     break
                 hash.update(chunk)
             conn.send(hash.digest())
-        # conn.close()
     else:
         conn_type = "data_chunk "
-        # print(conn_type + data)
         info = data.split(":")
         if(len(info) > 1):
             sendfile(conn, address, path, filesize, info)
-        # conn.close()  # close the connection
 
         
 def handshake(conn, address, path, filesize):
@@ -97,7 +89,6 @@ def sendfile(conn, address, path, filesize, info):
             
     conn.close()
     
-
 
 if __name__ == '__main__':
 
