@@ -3,7 +3,7 @@
 #include <math.h>
 #include <time.h>
 
-#define n   30000000000
+#define n   300000
 
 int main(){
     double x, y, z;
